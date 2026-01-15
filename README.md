@@ -92,6 +92,8 @@ cp secrets.py.example secrets.py
 > - 알고리즘, 핀토스 등 레포지토리 1개로 복수의 주차를 사용할 경우 전주에 사용한 레포를 그대로 이용가능합니다.
 
 ## 📁 예시 
+
+```
 📂 SW-AI-Algorithm (레포지토리 1개)
 ├── 📋 Issues
 │   ├── [WEEK2] basic - 파이썬 문법 - ...
@@ -106,6 +108,7 @@ cp secrets.py.example secrets.py
     ├── Week 3 Project → [WEEK3] 이슈만 추가
     ├── Week 4 Project → [WEEK4] 이슈만 추가
     └── Week 5 Project → [WEEK5] 이슈만 추가
+```
 
 ⚠️ **중요**: `secrets.py`는 `.gitignore`에 포함되어 있어 Git에 커밋되지 않습니다.
 
