@@ -76,9 +76,10 @@ cp secrets.py.example secrets.py
 
 1. GitHub 설정으로 이동: https://github.com/settings/tokens
 2. **"Tokens (classic)"** 선택
-3. **"Generate new token"** > **"Generate new token (classic)"** 클릭
+3. **"Generate new token"** > **"Generate new token (classic)"** 클릭 
 4. 권한 설정:
    - `repo` (전체) - 필수
+5. 기한 : 30일 만다 갱신해주세요.   
 
 # secrets.py 파일을 열어서 아래 정보 입력
 # - GITHUB_TOKEN: GitHub Personal Access Token
@@ -155,7 +156,7 @@ Issues를 생성한 후, GitHub Projects에 추가하는 방법:
 
 1. Repository의 **Projects** 탭으로 이동
 2. **"New project"** 클릭
-3. **"Board"** 템플릿 선택
+3. **"Board"** 템플릿 선택 -> 생성 시 import 이슈를 하면 모든 이슈가 자동으로 불러와 집니다.
 4. 프로젝트 이름 입력 
 
 ### 2. Issues를 Project에 추가
