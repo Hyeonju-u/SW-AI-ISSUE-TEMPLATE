@@ -1,0 +1,2 @@
+# SW-AI-ISSUE-TEMPLATE
+과제
