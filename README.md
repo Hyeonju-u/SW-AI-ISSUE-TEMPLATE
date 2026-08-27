@@ -1,3 +1,4 @@
+
 # SW-AI 컴퓨팅 사고로의 전환 - 레포지토리 템플릿 (Week 2 / Week 3)
 
 ## 📂 폴더 구조
@@ -208,3 +209,7 @@ python3 check.py 03_dijkstra.py
 
 각 `.py` 파일의 지문과 테스트 케이스는 백준/LeetCode 등 외부 사이트의
 지문을 복사하지 않고 본 학습 자료를 위해 자체적으로 작성된 것입니다.
+=======
+# SW-AI-ISSUE-TEMPLATE
+과제
+
