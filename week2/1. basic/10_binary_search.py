@@ -42,23 +42,23 @@ def binary_search(arr, target):
     ## 같으면 mid 반환
     ## target이 더 크면 left = mid + 1
     ## target이 더 작으면 right = mid - 1
-    while left <= right:
-        mid=(left+right)//2
+    while left <=right:
+        mid=(left+right) //2
         if arr[mid]==target:
             return mid
         elif arr[mid] < target:
-             left= mid+1
-        else: 
-            arr[mid]> target
-            right= mid -1
-          
-        
+            left = mid +1
+        else:
+            right = mid -1
+
+
+
 
 
 
 
     
-    return -1
+    return -1 # 인덱스 못찾았을때 -1 반환
 
 # 테스트 케이스
 if __name__ == "__main__":
