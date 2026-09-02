@@ -44,7 +44,17 @@ def process_print_queue(jobs):
     # TODO: 큐가 비어있지 않은 동안 반복
     ## 큐에서 작업 꺼내기
     ## 작업 처리 (출력 및 리스트에 추가)
-    pass
+    while len(queue) >= 1:
+          job= queue.popleft()  #job= 작업들 중에 딱 하나만 꺼낸것, jobs에 뭐가 들었었는지는 그대로 유지하고싶은데 꺼낸 물건 하나 다루려면 별도의 이름이 필요함
+          processed.append(job) # 꺼낸걸 처리 목록에 추가
+          print(f"처리: {job}")
+          
+
+
+    
+
+            
+
     
     return processed
 
