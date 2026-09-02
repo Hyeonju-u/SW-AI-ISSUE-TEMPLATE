@@ -139,22 +139,28 @@ def combinations(n: int, k: int) -> list:
         # - 왜 복사본?  current_combination 은 이후 .append/.pop 으로 계속 변하기
         #   때문에 그대로 넣으면 모든 조합이 같은 객체를 가리키게 됩니다.
         # - 복사본 만드는 방법: list(current_combination)  또는 current_combination[:]
-        #
+        # 
         # TODO(Level 1): 아래 두 줄을 직접 작성하세요.
         # if len(current_combination) == ...:
         #     result.append(...)
         #     return
-        pass  
+        if len(current_combination)==k:
+            result.append(current_combination[:])
+            return  
+        for num in range (start,n+1):
+            current_combination.append(num)
+            backtrack(num+1,current_combination)
+            current_combination.pop()
+          
 
-        # ──────────────────────────────────────────────────────────────────
-        # [Level 2] 가지치기 반복문
-        # ──────────────────────────────────────────────────────────────────
-        # 힌트:
-        # - 이번에는 start 부터 n 까지 숫자를 하나씩 시도해 봅니다.
-        # - 반복문 변수 이름은 num 으로 추천 (의미: "이번에 고를 숫자").
-        #
-        # TODO(Level 2): 아래 한 줄을 작성하세요.
-        pass
+            
+        
+
+
+                
+                
+            
+            
 
             # ──────────────────────────────────────────────────────────────
             # [Level 3] 백트래킹 3단계
