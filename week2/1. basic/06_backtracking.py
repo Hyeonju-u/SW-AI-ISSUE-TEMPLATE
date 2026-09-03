@@ -144,13 +144,13 @@ def combinations(n: int, k: int) -> list:
         # if len(current_combination) == ...:
         #     result.append(...)
         #     return
-        if len(current_combination)==k:
-            result.append(current_combination[:])
+        if len(current_combination)==k:  #지금까지 고른 숫자 개수가 원하는 K와 같아졌다면
+            result.append(current_combination[:]) # 조합 하나가 완성 됐다는 뜻, 복사본으로 current_combination 저장 안하면 이 리스트가 계속 변할때 저장해둔것도 같이 바꿔버림 
             return  
-        for num in range (start,n+1):
-            current_combination.append(num)
-            backtrack(num+1,current_combination)
-            current_combination.pop()
+        for num in range (start,n+1): #재귀 케이스 ,start 부터 n까지 숫자를 하나씩 시도해본다
+            current_combination.append(num) #선택: 지금 시도하는 숫자(num)를 조합에 추가
+            backtrack(num+1,current_combination) #방금 고른 num 보다 큰 수 부터 다시 시도하도록   재귀 호출 (num+1을 다음 start로 넘김) 이 재귀 호출이 끝나야 다음 줄(③)로 넘어감
+            current_combination.pop()  #방금 추가했던 num을 다시 빼냄->그래야 for문이 다음 num으로 넘어갈 때, 이전 선택의 흔적이 안 남고 깨끗한 상태에서 새로 시도할 수 있음
           
 
             
