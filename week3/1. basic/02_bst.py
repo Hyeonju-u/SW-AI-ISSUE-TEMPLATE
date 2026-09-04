@@ -33,11 +33,11 @@
 - target == root.value → 찾음!
 """
 
-class TreeNode:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+class TreeNode: #트리 노드라는 이름의 클래스 만듬
+    def __init__(self, value):#객체를 새로 만들때 자동으로 실행되는 초기화 함수 value는 이 노드에 저장할 값을 받는 매개변수
+        self.value = value #전달 받은 값을 이 노드 안에 저장 TreeNode(5)를 만들면, 이 노드는 값 5를 가지고 있게됨 value= 그사람 이름
+        self.left = None # 왼쪽에 연결된 자식 아직 자식이 없으니까 비어있음 처리
+        self.right = None # 오른쪽에 연결된 자식 아직 자식이 없으니까 비어있음 처리
 
 def search_bst(root, target):
     """
@@ -49,14 +49,48 @@ def search_bst(root, target):
     
     Returns:
         True/False
+    
     """
     # TODO: root가 None이면 False 반환
-    pass
+    if root is None:
+        return False
     
     # TODO: 값을 찾으면 True 반환
     ## target이 작으면 왼쪽 서브트리에서 검색
     ## target이 크면 오른쪽 서브트리에서 검색
-    pass
+    
+    if root.value == target:  # 루트값이 타겟이랑 같으면
+        return True     # 참 반환
+    elif root.value > target: #루트 값이 타겟보다 작으면
+        return search_bst(root.left,target) #왼쪽 검색
+    else:
+        return search_bst(root.right,target)    #아니면 오른쪽 검색    
+
+# ## while 문 버전
+# if root is None:
+#     return False
+
+# while True:
+#     if root.value == target:  # 루트값이 타겟이랑 같으면
+#         return True     # 참 반환
+#     elif root.value > target: #루트 값이 타겟보다 작으면
+#         root=root.left #왼쪽 검색
+#         else:
+#             root=root.right    #아니면 오른쪽 검색  
+#     if root is None:
+#        return False  
+    
+
+
+
+    
+
+
+
+
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
