@@ -48,11 +48,11 @@ def preorder(root):
         return []
     
     # TODO: 루트 값 추가
-    result.append(root.value)
-    
+    result.append(root.value) # append 객체 자체를 그대로 리스트의 끝에 하나의 요소로 추가 ,
+    #append는 구조를 유지한채 그대로 전체 다 붙음 extend는 괄호같은 포장지 까서 알맹이만 넣음
     # TODO: 왼쪽 서브트리 순회
-    result.extend(preorder(root.left))
-    
+    result.extend(preorder(root.left))    # tree_list.append([nodeB, nodeC])->[nodeA, [nodeB, nodeC]] 중첩 리스트가 생성되어 노드 탐색 시 구조가 깨짐
+                                          # tree_list.extend([nodeB, nodeC])->[nodeA, nodeB, nodeC] 1차원 리스트로 깔끔하게 노드가 이어붙음 반복 가능한 객체(리스트, 튜플 등)의 모든 요소를 꺼내어 기존 리스트에 각각 추가
     # TODO: 오른쪽 서브트리 순회
     result.extend(preorder(root.right))
     
