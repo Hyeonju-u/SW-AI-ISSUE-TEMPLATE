@@ -39,6 +39,11 @@
 - 계산 결과를 memo에 저장
 - 같은 값을 다시 계산할 필요 없음
 - 캐싱(Caching)과 유사한 개념
+# 이미 한번 계산한 값은 저장해 뒀다가 다음에 똑같은걸 구해야하면 계산 하지말고 저장해둔 값을 그냥 꺼내 써라
+# 하향식이라는 말의 의미: 큰 문제 부터 시작해서 그 문제를 풀려면 필요한 작은 문제로 내려가는 방식
+재귀를 타고 밑으로 내려가면서 필요한 답을 구해가는것 ex) fib(5)구하고 싶으면 fib(4)랑 fib(3)이 필요하네" → 아래로 내려감
+탑다운+메모이제이션을 합치면
+fib(n)을 구하라는 요청이 오면 → 먼저 저장해둔 곳에 이미 답이 있는지 확인 → 있으면 그거 그대로 꺼내서 반환 → 없으면 재귀로 fib(n-1), fib(n-2)를 구해서 더한 다음, 그 답을 저장해두고 반환
 
 계산 과정 (예: fib(5)):
 일반 재귀:
@@ -82,16 +87,27 @@ def fibonacci_memo(n, memo=None):
         n번째 피보나치 수
     """
     # TODO: memo가 None이면 빈 딕셔너리로 초기화
-    pass
+    if memo is None:
+        memo ={} 
     
-    # TODO: base case 
-    pass
+    # TODO: base case #더이상 재귀 안타고 바로 답이 나오는경우
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
     
     # TODO: 이미 계산한 값이 memo에 있으면 반환
-    pass
+    if n in memo:
+        return memo[n] #재계산하지않고 바로 반환
     
     # TODO: 재귀 호출하여 계산하고 memo에 저장
-    pass
+    else: 
+        if n not in memo:  #계산한 값이 메모에 없으면 
+            memo[n] = fibonacci_memo(n-1,memo)+fibonacci_memo(n-2,memo)
+            #재귀로 fib(n-1), fib(n-2)를 구하고 그 합을 memo[n]에 저장 (다음에 fib(n) 또 필요하면 재사용)
+            #memo[n] = fibonacci_memo(n-1)+fibonacci_memo(n-2)
+            #fibonacci_memo(n, memo)
+
     
     return memo[n]
 
