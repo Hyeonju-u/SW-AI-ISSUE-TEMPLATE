@@ -47,14 +47,23 @@ def bfs(graph, start):
     
     # TODO: 큐 생성 및 시작 정점 추가
     ## 방문한 정점 집합
-    pass
+    visited=[start]
+    queue= deque([start])
+
+
 
     # TODO: 큐가 빌 때까지 반복
     ## 큐에서 정점 꺼내기
     ## 인접한 정점들 확인
     ## 방문하지 않은 정점이면 큐에 추가
-    pass
-    
+    while queue: # queue가 빌때 까지 반복
+        current_node = queue.popleft() #큐에서 먼저 들어간거 먼저 빼고 현재 노드에 값 씌우기
+        #print(current_node) #현재 노드 확인(인접한 정점들 확인?)
+        for next_node in graph[current_node]: #다음 노드 확인
+            if next_node not in visited: #방문하지않은 정점이면 큐에 추가
+                visited.append(next_node) 
+                queue.append(next_node)
+
     return visited
 
 # 테스트 케이스
@@ -72,3 +81,19 @@ if __name__ == "__main__":
     print(f"시작 정점: 0")
     print(f"방문 순서: {result}")
 
+# visited=[start]
+#     queue= deque([start])
+
+
+
+#     # TODO: 큐가 빌 때까지 반복
+#     ## 큐에서 정점 꺼내기
+#     ## 인접한 정점들 확인
+#     ## 방문하지 않은 정점이면 큐에 추가
+#     while len(queue) < 0: # queue가 0이면
+#         current_node = queue.popleft() #큐에서 먼저 들어간거 먼저 빼고 현재 노드에 값 씌우기
+#         print(current_node) #현재 노드 확인(인접한 정점들 확인?)
+#         for next_node in graph(current_node): #다음 노드 확인
+#             if current_node not in visited[next_node]: #방문하지않은 정점이면 큐에 추가
+#                 visited.append(next_node) 
+#                 queue.append(visited)

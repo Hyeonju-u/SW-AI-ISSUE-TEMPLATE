@@ -42,7 +42,7 @@ def create_graph(vertices, edges, directed=False):
     """
     # TODO: 빈 그래프 초기화
     
-    graph = {i: [] for i in range(vertices)} #{0: [], 1: [], 2: [], 3: []}
+    graph = {i: [] for i in range(vertices)} #{0: [], 1: [], 2: [], 3: []} 
     
     
     # TODO: 간선 추가
