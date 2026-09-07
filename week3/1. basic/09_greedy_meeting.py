@@ -33,19 +33,25 @@ def select_meetings(meetings):
         (배정된 회의 개수, 선택된 회의 리스트)
     """
     # TODO: 회의가 없으면 0 반환
-    pass
+    if len(meetings)==0:
+        return 0
     
     # TODO: 종료 시간 기준으로 정렬
-    pass
+    meetings.sort(key=lambda x:x[1]) # 종료시간 두번째 값으로 오름차순 정렬
     
     selected = []
-    
+    last_end=0 #마지막 회의 변수 저장
+    count = 0 #배정된 회의 개수 저장 변수
     # TODO: 첫 번째 회의 선택
-    pass
-    
+    for start,end in meetings:#정렬된 순서대로 회의를 하나씩 확인
+        if start>= last_end: # 회의 시작 시간이 마지막 회의 종료시간이 보다 크거나 같으면 
+            count+= 1  # 배정된 회의 개수 카운트
+            last_end=end # 마지막 회의 종료시간 갱신
+            selected.append((start,end)) #선택한 회의를 리스트에 추가
+
     # TODO: 나머지 회의들 확인
     ## 이전 회의가 끝난 후 시작하는 회의만 선택
-    pass
+    
     
     return len(selected), selected
 
