@@ -50,10 +50,10 @@ def make_change_greedy(change, coins):
     ## 개수가 0보다 크면 결과에 추가
     for i in coins: # 코인리스트 하나씩 훑으면서
         count = change//i #현재 동전으로 거슬러 줄수있는 개수 계산
-        total_coins+= count 
-        change = change % i
-        if count >0:
-            result [i]=count
+        total_coins+= count #현재 동전 개수를 총 개수에 누적
+        change = change % i #거슬러줄 금액
+        if count >0: #동전을 1개 이상 사용했다면
+            result [i]=count #딕셔너리 result안에 동전 종류, 개수 저장
     
     return total_coins, result
 

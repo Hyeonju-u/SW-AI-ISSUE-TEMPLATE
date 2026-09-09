@@ -8,6 +8,14 @@
   공지된 표준 기법입니다. 본 지문과 테스트 케이스는 본 학습 자료를 위해
   자체적으로 작성되었습니다.
 - 본 학습에서는 `week2/2. advanced/03_priority_queue` 에서 다룬 힙 자료구조를 활용합니다.
+최단 거리를 구하는 알고리즘
+하나의 노드에서 다른 모든 노드까지의 거리를 구할수있음
+알고리즘 원리 
+최단거리를 구할 노드에서 시작하여 거리가 입력된 노드 중 최단거리가 가장 작은 노드를 돌아가며 선택
+노드를 돌아가면서 더 거리가 짧은게 나오면 값을 갱신해서 넣는다
+
+
+
 
 ▣ 작은 예시
     정점: 0, 1, 2, 3, 4
@@ -40,7 +48,7 @@
 dijkstra(n: int, edges: list[tuple[int, int, int]], start: int) -> list
   - 정점은 0, 1, ..., n-1 의 정수로 식별됩니다.
   - edges 는 (u, v, w) 형식의 방향 간선들의 리스트 (w >= 0).
-  - 반환값은 길이 n 의 리스트 dist 로,
+  - 반환값은 길이 n 의 리스트 dist 로, dist =len(n)
         dist[i] = start 에서 정점 i 까지의 최단 거리,
         도달 불가능하면 float('inf').
   - dist[start] 는 항상 0 이어야 합니다.
@@ -63,9 +71,16 @@ dijkstra(n: int, edges: list[tuple[int, int, int]], start: int) -> list
 """
 
 import heapq
+#힙은 완전 이진 트리 자료구조의 일종
+# 힙은 항상 루트 노드를 제거함
+# 최소힙 루트 노드가 가장 작은 값을 가짐
+# 따라서 값이 작은 데이터가 우선적으로 제거 됨
+# 최대 힙
+# 루트 노드가 가장 큰 값을 가짐
+# 따라서 큰 데이터가 우선적으로 제거 됨
 
 
-INF = float('inf')
+
 
 
 def dijkstra(n: int, edges: list, start: int) -> list:
@@ -79,6 +94,25 @@ def dijkstra(n: int, edges: list, start: int) -> list:
     # TODO: dist 를 INF 로 초기화하고 dist[start] = 0
     # TODO: 우선순위 큐(heapq)로 BFS-like 최단경로 탐색
     # TODO: dist 반환
+    INF = float('inf')
+    dist=[INF]*n
+    dist[start]=0
+    graph[u].append((v,w))
+    
+    for value in  range(n):
+        heapq.heappush()
+        current = len(heapq)-1
+        while heapq:
+            (d, u) = heappop
+        if d > dist[u]: continue
+            for v, w in graph[u]:
+                    if dist[u] + w < dist[v]:
+                        dist[v] = dist[u] + w
+                        heappush(pq, (dist[v], v))
+                        
+
+
+
     pass
 
 
