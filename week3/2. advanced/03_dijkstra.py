@@ -10,7 +10,7 @@
 - 본 학습에서는 `week2/2. advanced/03_priority_queue` 에서 다룬 힙 자료구조를 활용합니다.
 최단 거리를 구하는 알고리즘
 하나의 노드에서 다른 모든 노드까지의 거리를 구할수있음
-알고리즘 원리 
+알고리즘 원리
 최단거리를 구할 노드에서 시작하여 거리가 입력된 노드 중 최단거리가 가장 작은 노드를 돌아가며 선택
 노드를 돌아가면서 더 거리가 짧은게 나오면 값을 갱신해서 넣는다
 
@@ -71,16 +71,27 @@ dijkstra(n: int, edges: list[tuple[int, int, int]], start: int) -> list
 """
 
 import heapq
-#힙은 완전 이진 트리 자료구조의 일종
-# 힙은 항상 루트 노드를 제거함
-# 최소힙 루트 노드가 가장 작은 값을 가짐
-# 따라서 값이 작은 데이터가 우선적으로 제거 됨
-# 최대 힙
-# 루트 노드가 가장 큰 값을 가짐
-# 따라서 큰 데이터가 우선적으로 제거 됨
+
+# 우선순위 큐를 위해 만들어진 자료구조
+# 여러 값 중 최대/최소 값을 빠르게 찾아내도록 만들어진 반정렬 상태
+# 힙트리는 중복된 값을 허용함
+# #힙은 완전 이진 트리 자료구조의 일종
+# # 힙은 항상 루트 노드를 제거함
+# # 최소힙 루트 노드가 가장 작은 값을 가짐
+# # 따라서 값이 작은 데이터가 우선적으로 제거 됨
+# # 최대 힙
+# # 루트 노드가 가장 큰 값을 가짐
+# # 따라서 큰 데이터가 우선적으로 제거 됨
+# # #우선 순위 큐란 들어간 순서와 상관없이 우선 순위를 가진 원소는 낮은 우선 순위를 가진 원소보다 먼저 처리
+# 들어온 순서는 무시하고 중요도(우선순위)가 높은 애가 먼저 나감
+# 우선순위가 똑같은 애들끼리는 먼저 들어온게 먼저 나가는 규칙 성립 함
+# # 만약 두원소가 같은 우선 순위를 가진다면 큐에서 그들의 순서에 의해 처리
+# # 힙큐: 파이썬 내장모듈 내부적으로 최소 힙의 형태로 정렬됨
+# heappush(heap, item)-> 힙 함수를 통해 아이템을 힙에 추가 아이템을 추가하면 최소 힙으로 정렬됨
+# heapify(list)->함수를 통해 list를 heap으로 변환한다.
 
 
-
+INF = float("inf")
 
 
 def dijkstra(n: int, edges: list, start: int) -> list:
@@ -94,31 +105,36 @@ def dijkstra(n: int, edges: list, start: int) -> list:
     # TODO: dist 를 INF 로 초기화하고 dist[start] = 0
     # TODO: 우선순위 큐(heapq)로 BFS-like 최단경로 탐색
     # TODO: dist 반환
-    INF = float('inf')
-    dist=[INF]*n
-    dist[start]=0
-    graph[u].append((v,w))
-    
-    for value in  range(n):
-        heapq.heappush()
-        current = len(heapq)-1
-        while heapq:
-            (d, u) = heappop
-        if d > dist[u]: continue
-            for v, w in graph[u]:
-                    if dist[u] + w < dist[v]:
-                        dist[v] = dist[u] + w
-                        heappush(pq, (dist[v], v))
-                        
 
+    dist = [INF] * (n)
+    graph = [[] for i in range(n)]
+    dist[start] = 0
+    pq = []
 
+    # edges(u,v,w) edges의 간선 하나 u번 정점에서 v번 정점으로 가는, 가중치 w인 길
+    # graph[1] = [(2, 1)]           # 1번에서 2번까지 비용1
 
-    pass
+    for u, v, w in edges:  # 간선 순회
+        graph[u].append((v, w))
+    heapq.heappush(pq, (0, start))
+
+    while pq:
+        dist_u, u = heapq.heappop(pq)
+        if dist[u] < dist_u:
+            continue
+
+        for v, w in graph[u]:
+            if dist[u] + w < dist[v]:
+                dist[v] = dist_u + w
+                heapq.heappush(pq, (dist[v], v))
+        if dist_u > dist[u]:
+            continue
+    return dist
 
 
 def _format(dist):
     """출력 표기를 위한 헬퍼: float('inf') 는 'INF' 로 보여줌"""
-    return [('INF' if x == INF else x) for x in dist]
+    return [("INF" if x == INF else x) for x in dist]
 
 
 if __name__ == "__main__":
@@ -160,3 +176,14 @@ if __name__ == "__main__":
     edges = [(0, 1, 0), (1, 2, 0), (0, 2, 5)]
     print(f"  n={n}, edges={edges}, start=0")
     print(f"  최단 거리: {_format(dijkstra(n, edges, 0))}")
+
+# for value in range(n):
+#     heapq.heappush()
+#     current = len(heapq)-1
+#     while heapq:
+#         (d, u) = heappop
+#     if d > dist[u]: continue
+#     for v, w in graph[u]:
+#                 if dist[u] + w < dist[v]:
+#                     dist[v] = dist[u] + w
+#                     heappush(pq, (dist[v], v))
